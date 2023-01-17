@@ -139,10 +139,10 @@ th {
 
 <div style="background-color: #eee8e4;">
   <div >
-  <img src="http://localhost/BackGroundHelper.png" style="width:-webkit-fill-available;position: absolute;background-size:cover">
+  <img src="{{ url_for ('static', filename = 'images/BackGroundHelper.png') }}" style="width:-webkit-fill-available;position: absolute;background-size:cover">
 </div>
 <div class="loading mx-auto">
-    <img id="loadingImg" src="http://localhost/loading-bg-gif-crop.gif">
+    <img id="loadingImg" src="{{ url_for ('static', filename = 'images/loading-bg-gif-crop.gif') }}">
 </div>
   <div style="display: flex; padding-left: 20%; position: relative;padding-top: 20%;">
    <!-- Button trigger modal -->
