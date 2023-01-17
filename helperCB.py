@@ -28,7 +28,7 @@ def store_inputs():
   
   ShowData = 1
 
-  conn = mysql.connector.connect(user='root', password='', host='localhost', database='helpermain')
+  conn = mysql.connector.connect(user='bdb28d22e39e92', password='3b5dcb81', host='us-cdbr-east-06.cleardb.net', database='heroku_f1be7c287b787df')
   cursor = conn.cursor()
   query = 'SELECT UniqueCode FROM jobslist'
   cursor.execute(query)
@@ -46,7 +46,7 @@ def store_inputs():
     
   CheckIfMailSend = sendUniqueCode(Email,UniqueCode)
   if CheckIfMailSend:
-    conn = mysql.connector.connect(user='root', password='', host='localhost', database='helpermain')
+    conn = mysql.connector.connect(user='bdb28d22e39e92', password='3b5dcb81', host='us-cdbr-east-06.cleardb.net', database='heroku_f1be7c287b787df')
     cursor = conn.cursor()
     query = 'INSERT INTO jobslist (JobTitle, Address, Contact, Email, JobDescription, ''NumberofVacancy'',UniqueCode,ShowData,latitude,longitude) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
     cursor.execute(query, (JobTitle, Address, Contact, Email, JobDescription, NumberVacancy,UniqueCode,ShowData,latitude,longitude))
@@ -65,7 +65,7 @@ def DeleteJob():
   req = request.get_json()
   UniqueCode = str(req['UniqueCode'])
   
-  conn = mysql.connector.connect(user='root', password='', host='localhost', database='helpermain')
+  conn = mysql.connector.connect(user='bdb28d22e39e92', password='3b5dcb81', host='us-cdbr-east-06.cleardb.net', database='heroku_f1be7c287b787df')
   cursor = conn.cursor()
 
   query = 'SELECT JobTitle,Address,Contact,JobDescription,NumberofVacancy from jobslist where UniqueCode = (%s) and ShowData = 1'
@@ -97,7 +97,7 @@ def DeleteJob():
 def get_jobs():
   req = request.get_json()
 
-  conn = mysql.connector.connect(user='root', password='', host='localhost', database='helpermain')
+  conn = mysql.connector.connect(user='bdb28d22e39e92', password='3b5dcb81', host='us-cdbr-east-06.cleardb.net', database='heroku_f1be7c287b787df')
   cursor = conn.cursor()
   query = 'SELECT JobTitle,Address,Contact, DATE_FORMAT(PostedDate, "%Y-%m-%d"),JobDescription,NumberofVacancy,latitude,longitude FROM jobslist WHERE ShowData = 1'
   cursor.execute(query)
