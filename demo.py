@@ -44,7 +44,7 @@ def store_inputs():
         break
 
     
-  CheckIfMailSend = sendUniqueCode(Email,UniqueCode)
+  CheckIfMailSend = sendUniqueCode(Email,UniqueCode,JobTitle,Address,Contact,JobDescription,NumberVacancy)
   if CheckIfMailSend:
     conn = mysql.connector.connect(user='bdb28d22e39e92', password='3b5dcb81', host='us-cdbr-east-06.cleardb.net', database='heroku_f1be7c287b787df')
     cursor = conn.cursor()
@@ -141,7 +141,7 @@ def get_distance(lat1, lon1, lat2, lon2):
     return 6371 * c
 
 
-def sendUniqueCode(Email,UniqueCode):
+def sendUniqueCode(Email,UniqueCode,JobTitle,Address,Contact,JobDescription,NumberVacancy):
 
 
   url = "https://api.zerobounce.net/v2/validate"
@@ -170,7 +170,7 @@ def sendUniqueCode(Email,UniqueCode):
     # Send the email
     to = Email
     subject = "Unique Helper Code"
-    body = "This is your Unique Helper Code " + UniqueCode + ". Only Use when you want to delete your job posting"
+    body = "This is your Unique Helper Code " + UniqueCode + " . For Job :" +JobTitle+ ", Address :" +Address+ ", Contact :" +Contact+ ", Job Description :" +JobDescription+", Number of Vacancy :" +NumberVacancy+". Only Use when you want to delete your job posting"
     msg = f"Subject: {subject}\n\n{body}"
 
     send_status = server.sendmail("helperJob86@gmail.com",to,msg)
